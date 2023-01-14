@@ -29,24 +29,20 @@ class Store {
     })
   }
 
-  //
+  //adding notes with title, text and a unique user id
   addNotes(data) {
     const newNote = {
       title: data.title,
       text: data.text,
       id: uuidv4(),
     }
-    //adding the data to the json file
-    //pushing an item into my array
+    //adding the data to the json file, and pushing each item into my array
     return this.getNotes()
-    //adding the notes
       .then((response) => [...response, newNote])
       .then((updatedNotes) => {
         this.writeFile(updatedNotes)
       })
       .then(() => newNote)
-    
-   
   }
 }
 module.exports = new Store()
